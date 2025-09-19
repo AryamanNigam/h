@@ -1,0 +1,39 @@
+BACKEND SETUP INSTRUCTIONS
+==========================
+
+1. Copy your Python backend file to a new folder called 'backend'
+2. Rename it to 'main.py'
+3. Add CORS middleware to the top of main.py:
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+4. Create requirements.txt with:
+fastapi==0.104.1
+uvicorn==0.24.0
+supabase==2.0.0
+python-dotenv==1.0.0
+requests==2.31.0
+fastapi-cors==0.0.6
+
+5. Install dependencies:
+pip install -r requirements.txt
+
+6. Create .env file with your API keys:
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+HF_TOKEN=your_huggingface_token
+
+7. Run the backend:
+uvicorn main:app --reload --port 8000
+
+8. Set NEXT_PUBLIC_API_URL=http://localhost:8000 in v0 Project Settings
+
+9. Both services should now work together!
